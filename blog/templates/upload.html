@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!--
+
+    Looking at the source code, like a basass. Way to go!
+    This is a html page from demo implementation of jQuery Uploader
+    with Django >
+    = 1.2.5 still enabled.
+
+    Here you can find more information and download the whole source code:
+    https://github.com/miki725/Django-jQuery-File-Uploader-Integration-demo
+    and here you can find the wiki with even more info:
+    https://github.com/miki725/Django-jQuery-File-Uploader-Integration-demo/wiki
+
+    Thanks for looking.
+
+    -->
+    <meta charset="UTF-8">
+    <title>上传图片</title>
+
+    <!-- Some CSS for the jQuery uploader UI -->
+    <style type="text/css">
+    body {
+        width: 840px;
+        padding-top: 30px;
+        margin: auto;
+    }
+    </style>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" id="theme">
+    <link href="/static/css/jquery.fileupload-ui.css" rel="stylesheet">
+
+    <!-- jQuery Javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+    <!-- jQuery Templates -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+
+    <!-- Fixing CSRF in Django for jQuery -->
+    <script src="/static/js/jquery_fix_csrf.js"></script>
+
+    <!-- jQuery Upload files -->
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
+    <script src="/static/js/jquery.fileupload-ui.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            'use strict';
+
+            // Initialize the jQuery File Upload widget
+            // For a complete option reference go to
+            // https://github.com/blueimp/jQuery-File-Upload
+            $('#fileupload').fileupload({
+                // this formData is neccessary to pass the csrf and pass uid to django
+                formData: [
+                    // { name: "uid", value: "{{ uid }}"},
+                    { name: "albums", value: "{{ albums }}"},
+                    { name: "csrfmiddlewaretoken", value: "{{ csrf_token }}"}
+                ],
+                maxFileSize: {{ maxfilesize }},
+                minFileSize: {{ minfilesize }},
+                sequentialUploads: true
+            });
+
+            // Load existing files
+            $.getJSON($('#fileupload form').prop('action'), function (files) {
+                var fu = $('#fileupload').data('fileupload');
+                fu._adjustMaxNumberOfFiles(-files.length);
+                fu._renderDownload(files)
+                        .appendTo($('#fileupload .files'))
+                        .fadeIn(function () {
+                            // Fix for IE7 and lower:
+                            $(this).show();
+                        });
+            });
+
+            // Open download dialogs via iframes,
+            // to prevent aborting current uploads
+            $('#fileupload .files a:not([target^=_blank])').live('click', function (e) {
+                e.preventDefault();
+                $('<iframe style="display:none;"></iframe>')
+                        .prop('src', this.href)
+                        .appendTo('body');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="fileupload">
+        <form action="{% url 'blog.views.upload' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="fileupload-buttonbar">
+                <label class="fileinput-button">
+                    <span>选择图片...</span>
+                    <input type="file" name="files[]" multiple></label>
+                <button type="submit" class="start">发布</button>
+            </div>
+        </form>
+        <div class="fileupload-content">
+            <table class="files"></table>
+            <div class="fileupload-progressbar"></div>
+        </div>
+    </div>
+
+    <script id="template-upload" type="text/x-jquery-tmpl">
+    <tr class="template-upload{{ open_tv }}if error{{ close_tv }} ui-state-error{{ open_tv }}/if{{ close_tv }}">
+        <td class="preview"></td>
+        <td><select name="album">
+        {{ open_tv }} for item in albums
+        <option value="">{{ item.name }}</option>
+        {{ close_tv }}
+        </select></td>
+        {{ open_tv }}if error{{ close_tv }}
+        <td class="error" colspan="2">Error:
+            {{ open_tv }}if error === 'maxFileSize'{{ close_tv }}File is too big
+            {{ open_tv }}else error === 'minFileSize'{{ close_tv }}File is too small
+            {{ open_tv }}else error === 'acceptFileTypes'{{ close_tv }}Filetype not allowed
+            {{ open_tv }}else error === 'maxNumberOfFiles'{{ close_tv }}Max number of files exceeded
+            {{ open_tv }}else{{ close_tv }}${error}
+            {{ open_tv }}/if{{ close_tv }}
+        </td>
+        {{ open_tv }}else{{ close_tv }}
+        <td class="progress">
+            <div></div>
+        </td>
+        {{ open_tv }}/if{{ close_tv }}
+        <td class="cancel">
+            <button>Cancel</button>
+        </td>
+    </tr>
+</script>
+
+</body>
+
+</html>

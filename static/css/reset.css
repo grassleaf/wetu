@@ -1,0 +1,13 @@
+.bs-header {
+	font-size: 16px;
+}
+.container {
+	width: 980px;
+}
+h1 {
+	margin-top: 0;
+}
+a {
+	color: #6a6a6a;
+	text-decoration: none;
+}

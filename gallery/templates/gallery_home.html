@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}首页{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="/static/css/gallery.css">
+{% endblock %}
+{% block content %}
+<header class="bs-header" id="overview">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>图片小站</h1>
+            <p style="padding-left: 40px;">管理你的所有照片</p>
+        </div>
+        <div class="col-md-4">
+            <div id="search_box">
+                <form class="form-search" method="get" action="/">
+                    <input type="text" class="input-medium search-query" value="" name="s" id="s">
+                    <button type="submit" class="btn btn-sm">搜索</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="subnav under_line"></div>
+</header>
+
+{% if album_list %}
+<h3>大家在分享</h3>
+<div class="wt-album">
+    {% for album in album_list|slice:":4" %}
+    <div class="section">        
+        <a href="{{ album.get_absolute_url }}">
+            {% if album.photo_set.count %}
+            <img src="media/{{ album.photo_set.first.image.small_url }}" />
+            {% else %}
+            <img src="media/imgdata/20140124115823_HJydi.thumbs.jpg">
+            {% endif %}
+        </a>
+        <br />
+        <div class="photo-desc">
+            <a href="{{ album.get_absolute_url }}"> <b>{{ album.name }}</b></a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="album-more">
+    <a href="{% url 'album_list' %}">查看更多</a>
+</div>
+{% else %}
+<div style="margin-top:120px;font-size:40px;text-align:center;">大家还没分享图片，你快来吧。</div>
+{% endif %}
+{% endblock %}

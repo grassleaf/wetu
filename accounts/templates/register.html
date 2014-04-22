@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+注册微图网
+{% endblock %}
+
+{% load staticfiles %}
+{% block extracss%}
+<link href="/static/css/register.css" rel="stylesheet">
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="page" id="reg-form" style="display: block;">
+	<h2>欢迎加入微图</h2>
+	<form action="/register/" method="post" role="form">
+		<div class="form-group">
+			<label class="form-label">邮箱</label>
+			<input name="email" data-validation="email"></div>
+		<div class="form-group">
+			<label class="form-label">昵称</label>
+			<input name="username" data-validation="length" data-validation-length="1-12" data-validation-error-msg="The user name has to be an alphanumeric value between 1-12 characters"></div>
+		<div class="form-group">
+			<label class="form-label">密码</label>
+			<input type="password" name="pass" data-validation="strength" data-validation-strength="1"></div>
+		<!-- <div class="form-group">
+			<label class="form-label">重复密码</label>
+			<input type="password" name="pass_confirmation" data-validation="confirmation"></div> -->
+		<div class="form-group">
+			<label class="form-label"></label>
+			<input type="checkbox" name="check" value="1" data-validation="required" data-validation-error-msg="You have to agree to our terms" style="vertical-align: 1px; margin-right: 3px">
+			我已经认真阅读并同意找趣的《
+			<a href="#">使用协议</a>
+			》
+		</div>
+		{% if error %}
+		<div class="form-group">
+			<label>{{error}}</label>
+		</div>
+		{% endif %}
+		<div class="form-group">
+			<div class="controls">
+				<button type="submit" class="btn">注册</button>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}
+
+{% load staticfiles %}
+{% block extrajs %}
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+<script>
+$.validate({
+  modules : 'security',
+  onModulesLoaded : function() {
+    var optionalConfig = {
+      fontSize: '12pt',
+      padding: '4px',
+      bad : 'Very bad',
+      weak : 'Weak',
+      good : 'Good',
+      strong : 'Strong'
+    };
+
+    $('input[name="pass"]').displayPasswordStrength(optionalConfig);
+  }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.name }}{% endblock %}
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="/static/css/gallery.css">
+<style type="text/css">
+    .wt-album-desc {
+        padding: 8px;
+        margin-bottom: 12px;
+        background-color: #f0f0f0; 
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- <p>
+    <a href="{% url 'album_list' %}">&laquo; Back to full listing</a>
+</p> -->
+
+<div class="wt-album-desc">
+    <h2>{{ object.name }}</h2>
+    <p>{{ object.intro }}</p>
+</div>
+
+<div class="photos-head">
+    <!-- <h3>Photos</h3>
+<a href="/add_photo" class="btn btn-default">add photo</a>
+-->
+</div>
+
+<div class="wt-photo-set">
+{% for photo in object.photo_set.all %}
+<div class="section">
+    <a href="{{ photo.get_absolute_url }}">
+        <img src="/media/{{ photo.image.small_url }}" />
+    </a>
+    <div class="photo-desc">{{ photo.intro }}</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

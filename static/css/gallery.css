@@ -1,0 +1,47 @@
+.wt-album, .wt-photo-set {
+	width: 1000px;
+}
+.wt-album .section, .wt-photo-set .section {
+	position: relative;
+	margin-right: 20px;
+	float: left;
+}
+.wt-album .section .photo-desc a {
+	display: inline-block;
+	text-align: center;
+	font-size: 16px;
+	padding-left: 8px;
+	padding-top: 6px;
+}
+.album-more {
+	clear: both;
+	margin-top: 12px;
+	text-align: center;
+}
+.album-more a {
+	padding: 4px;
+	color: #fff;
+	background-color: #49f;
+	border-radius: 4px;
+	font-size: 20px;
+}
+.wt-album-desc {
+	text-align: center;
+}
+.wt-photo-set .photo-desc, .wt-album .album-desc {
+	margin-top: 6px;
+	margin-left: 8px;
+}
+#photo-detail {
+	margin-top:60px;
+}
+#photo-detail .photo-img {
+	padding-left: 45px;
+	margin-right: 20px;
+}
+#photo-detail .photo-desc {
+	margin-top: 80px;
+}
+#photo-detail .photo-desc p {
+	margin-top: 20px;
+}

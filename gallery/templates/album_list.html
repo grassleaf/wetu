@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}专辑列表{% endblock %}
+
+{% load staticfiles %}
+{% block extracss %}
+<style type="text/css">
+    .albums-head {
+        background: #ddf;
+    }
+    .albums-head a {
+        float: right;
+        margin-top: 9px;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="/static/css/gallery.css">
+{% endblock %}
+
+{% block content %}
+<!-- <p>
+    <a href="{% url 'gallery' %}">&laquo; Back to main page</a>
+</p> -->
+<!-- <div class="albums-head">
+    <a href="/add_album" class="btn btn-default pull-right">add album</a>
+</div> -->
+{% if object_list %}
+<div class="wt-album">
+    {% for album in object_list %}
+    <div class="section">
+        <div>
+            <a href="{{ album.get_absolute_url }}">
+                {% if album.photo_set.count %}
+                <img src="/media/{{ album.photo_set.first.image.small_url }}">
+                {% else %}
+                <img src="/media/imgdata/20140124115823_HJydi.thumbs.jpg">{% endif %}
+            </a>
+        </div>
+        <div class="album-desc">{{ album.name }}</div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div style="margin-top:120px;font-size:40px;text-align:center;">额额，还没有图片。</div>
+{% endif %}
+
+{% endblock %}
