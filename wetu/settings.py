@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pingback',
+    # 'pingback',
     'duoshuo',
     'accounts',
     # 'blog',
@@ -65,12 +65,12 @@ WSGI_APPLICATION = 'wetu.wsgi.application'
 if DEBUG:
     DOMAIN = 'http://localhost:8080'
     DB_NAME = 'wetu'
-    DB_USER = 'root'
+    DB_USER = 'michael'
     DB_PWD = '123456'
 else:
-    DOMAIN = 'http://www.wetu.com'
+    DOMAIN = 'http://isheying.co'
     DB_NAME = 'wetu'
-    DB_USER = 'root'
+    DB_USER = 'michael'
     DB_PWD = '123456'
 
 DATABASES = {
@@ -135,7 +135,7 @@ if DEBUG:
     MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware', )
     LOG_FILE = '/tmp/blog.log'
 else:
-    LOG_FILE = '/home/michael/virtualenvs/bloga/logs/all.log'
+    LOG_FILE = os.path.join(BASE_DIR, 'logs/all.log')
 
 LOGGING = {
     'version': 1,
@@ -197,7 +197,8 @@ LOGGING = {
     }
 }
 
-MEDIA_ROOT = '/home/michael/workspace/www/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 PAGE_NUM = 10
 RECENTLY_NUM = 10
