@@ -1,13 +1,12 @@
-.bs-header {
-	font-size: 16px;
+body {
+
 }
-.container {
-	width: 980px;
+.thumbnail img {
+	margin-left: auto;
+	margin-right: auto;
 }
-h1 {
-	margin-top: 0;
-}
-a {
-	color: #6a6a6a;
-	text-decoration: none;
+.thumbnail img {
+	display: block;
+	height: auto;
+	max-width: 100%;
 }

@@ -14,9 +14,12 @@ urlpatterns = patterns('',
     
     url(r'', include('accounts.urls')),
     url(r'', include('gallery.urls')),
+    url(r'^crawl/', include('crawl.urls')),
 )
 
 urlpatterns += patterns('',
+	# url(r"^static/(?P<path>.*)$", "django.views.static.serve", \
+ #        {"document_root": '/home/michael/workspace/web/wetu/static'}),
 	url(r"^media/(?P<path>.*)$", "django.views.static.serve", \
         {"document_root": settings.MEDIA_ROOT}),
 )

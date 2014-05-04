@@ -1,3 +1,4 @@
+#coding: utf-8
 from django.views.generic import TemplateView, DetailView, ListView
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response, redirect
@@ -5,43 +6,41 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.core.files.base import ContentFile
+from django.views.generic import DetailView
 
 from data.models import Album, Photo
 from data.func import *
 
-# class AlbumListView(ListView):
-#     model = Album
-#     context_object_name = 'object_list'
-#     template_name = "album_list.html"
+class BaseMixin(object):
+    def get_context_data(self, *args, **kwargs):
+        context = super(BaseMixin, self).get_context_data(**kwargs)
+        try:
+            context['albums'] = Album.objects.all()
+        except Exception as e:
+            print '加载基本信息出错'
+            logger.exception(u'加载基本信息出错[%s]！', e)
 
-#     def get_context_data(self, **kwargs):
-#         context = super(AlbumListView, self).get_context_data(**kwargs)
-#         return context
+        return context
 
-#     # def get_queryset(self):
-#     #     queryset = super(AlbumListView, self).get_queryset()
-#     #     return queryset
+class IndexView(BaseMixin, ListView):
+    object = None
+    user = None
+    template_name = 'index.html'
 
-# class AlbumDetailView(DetailView):
-#     model = Album
-#     context_object_name = 'object'
-#     template_name = "album_detail.html"
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated() and (not request.user.is_superuser):
+            self.user = request.user
+        return super(IndexView, self).get(request, *args, **kwargs)
 
-#     def get_context_data(self, **kwargs):
-#         context = super(AlbumDetailView, self).get_context_data(**kwargs)
-#         return context
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        if self.user:
+            info = getInfo(self.user.id)
+            context['info'] = info[0]
+        return context
 
-#     # def get_object(self, queryset=None):
-#     #     return super(AlbumDetailView, self).get_object()
-
-# class PhotoDetailView(DetailView):
-#     model = Photo
-#     context_object_name = 'object'
-#     template_name = "photo_detail.html"
-
-#     def get_context_data(self, **kwargs):
-#         context = super(PhotoDetailView, self).get_context_data(**kwargs)
-#         return context
+    def get_queryset(self):
+        return None
 
 @csrf_exempt
 def request_albums(request, id):
@@ -53,7 +52,7 @@ def request_albums(request, id):
 @csrf_exempt
 def create_album(request):
     if request.method == 'POST':
-        album = createAlbum(request.user.id ,request.POST['album_name'],request.POST['album_description'])
+        album = createAlbum(request.user.id ,request.POST['albumname'],request.POST['albumdesc'])
         return HttpResponseRedirect(reverse('album_detail', kwargs={'slug': album.slug}))
 
 @csrf_exempt
@@ -64,7 +63,7 @@ def upload(request):
         content = ContentFile(request.FILES['files[]'].read())
         album_name = request.POST['selector']
         albumId = getAlbumIdByName(request.user.id, album_name)
-        intro = request.POST['photo_description']
+        intro = request.POST['photodesc']
         photo = createPhoto(Name=name, Content=content, AlbumID=albumId, Intro=intro)
         return HttpResponseRedirect(reverse('photo_detail', kwargs={'slug': photo.slug}))
 

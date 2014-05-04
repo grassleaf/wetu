@@ -1,0 +1,98 @@
+/*轮播左右按钮*/
+.carousel-left {
+	left: 0;
+}
+.carousel-right {
+	right: 0;
+}
+.carousel-left, .carousel-right {
+	position: absolute;
+	display: block;
+	width: 50px;
+	height: 64px;
+	overflow: hidden;
+	z-index: 2;
+	top: 215px;
+}
+.carousel-left b, .carousel-right b {
+	position: absolute;
+	z-index: 1;
+	display: block;
+	width: 50px;
+	height: 64px;
+	overflow: hidden;
+	background: #000;
+	opacity: 0.25;
+	filter:alpha(opacity=25);
+	cursor: pointer;
+}
+.carousel-left b {
+	border-radius: 0 3px 3px 0;
+}
+.carousel-right b {
+	border-radius: 3px 0 0 3px;
+}
+.carousel-left span, .carousel-right span {
+	display: block;
+	position: relative;
+	z-index: 2;
+	width: 22px;
+	height: 33px;
+	top: 16px;
+	cursor: pointer;
+	margin-right: 28px;
+}
+.carousel-left span {
+	left: 12px;
+	background-image: url(../images/l.png);
+}
+.carousel-right span {
+	left: 16px;
+	background-image: url(../images/r.png);
+}
+.carousel-left:hover b, .carousel-right:hover b {
+	opacity:0.4;
+	filter:alpha(opacity=40);
+}
+/*缩略图*/
+.caption a {
+	font-size: 14px;
+	color: #797979;
+}
+.caption a:hover {
+	text-decoration: underline;
+}
+.caption .thumbattr {
+	margin-top: 12px;
+}
+.caption p {
+	color: #797979;
+	margin: 4px 0 0 0;
+}
+.caption p a {
+	font-size: 12px;
+}
+.thumb-bottom-a {
+    border-bottom: 1px solid #DEDFE0;
+    height: 1px;
+    margin: 0 auto;
+    width: 220px;
+}
+.thumb-bottom-b {
+    border-bottom: 1px solid #DEDFE0;
+    height: 1px;
+    margin: 0 auto;
+    width: 216px;
+}
+a:hover {
+	color: #2DAAE9;
+	text-decoration: underline;
+}
+em, i, u {
+    font-style: normal;
+    text-decoration: none;
+}
+p, span {
+	font-weight: normal;
+}
+

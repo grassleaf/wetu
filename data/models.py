@@ -108,6 +108,9 @@ class Album(models.Model):
 	def get_absolute_url(self):
 		return reverse('album_detail', kwargs={'slug': self.slug})
 
+	def getInfoSlug(self):
+		return Info.objects.filter(ID__id = self.owner.id).first().slug
+
 class Comment(models.Model):
 	A = FK(User, related_name = '+')
 	B = FK(User, related_name = '+')

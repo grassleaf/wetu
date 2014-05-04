@@ -1,11 +1,11 @@
 from django.conf.urls import *
 from data.models import Album, Photo
 from django.views.generic import TemplateView, DetailView, ListView
-# from gallery.views import AlbumListView, AlbumDetailView, PhotoDetailView
+from gallery.views import IndexView
 
 urlpatterns = patterns('django.views.generic',
-    url(r'^$', ListView.as_view(model=Album, template_name="gallery_home.html"),
-        name = 'gallery'
+    url(r'^$', IndexView.as_view(),
+        name = 'index'
     ),
     url(r'^album/$', ListView.as_view(queryset=Album.objects.all(),
         context_object_name='object_list', template_name='album_list.html'),

@@ -1,54 +1,89 @@
-{% extends "base.html" %}
-
-{% block title %}
-注册微图网
-{% endblock %}
-
-{% load staticfiles %}
-{% block extracss%}
-<link href="/static/css/register.css" rel="stylesheet">
-<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
-{% endblock %}
-
-{% block content %}
-<div class="page" id="reg-form" style="display: block;">
-	<h2>欢迎加入微图</h2>
-	<form action="/register/" method="post" role="form">
-		<div class="form-group">
-			<label class="form-label">邮箱</label>
-			<input name="email" data-validation="email"></div>
-		<div class="form-group">
-			<label class="form-label">昵称</label>
-			<input name="username" data-validation="length" data-validation-length="1-12" data-validation-error-msg="The user name has to be an alphanumeric value between 1-12 characters"></div>
-		<div class="form-group">
-			<label class="form-label">密码</label>
-			<input type="password" name="pass" data-validation="strength" data-validation-strength="1"></div>
-		<!-- <div class="form-group">
-			<label class="form-label">重复密码</label>
-			<input type="password" name="pass_confirmation" data-validation="confirmation"></div> -->
-		<div class="form-group">
-			<label class="form-label"></label>
-			<input type="checkbox" name="check" value="1" data-validation="required" data-validation-error-msg="You have to agree to our terms" style="vertical-align: 1px; margin-right: 3px">
-			我已经认真阅读并同意找趣的《
-			<a href="#">使用协议</a>
-			》
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>欢迎加入草叶</title>
+	<link rel="stylesheet" href="/static/css/custom.css" />
+	<link rel="stylesheet" href="/static/css/sign.css" />
+</head>
+<body>
+	<div id="content">
+		<div id="header">
+			<a href="/" class="logo">草叶</a>
 		</div>
-		{% if error %}
-		<div class="form-group">
-			<label>{{error}}</label>
-		</div>
-		{% endif %}
-		<div class="form-group">
-			<div class="controls">
-				<button type="submit" class="btn">注册</button>
+		<div class="wrapper">
+			<div class="article">
+				<h2>欢迎加入草叶</h2>
+				<div class="cont">
+					<form action="/register/" method="POST">
+						<div class="item">
+							<label for="email">邮箱</label>
+							<input class="basic-input" data-validation="email" data-validation-error-msg="请输入正确的邮箱" type="text" name="email" tabindex="1"></div>
+						<div class="item">
+							<label for="username">昵称</label>
+							<input class="basic-input" data-validation="length" data-validation-length="2-12" data-validation-error-msg="请输入2～12个字符" type="text" name="username" tabindex="2"></div>
+						<div class="item">
+							<label for="password">密码</label>
+							<input class="basic-input" data-validation="length" data-validation-length="6~20" data-validation-error-msg="请输入6~20个字符" type="password" name="password" tabindex="3"></div>
+						<!-- <div class="item">
+						<label for="confirm-password">确认密码</label>
+						<input class="basic-input" type="password" name="confirm-password" tabindex="4"></div>
+					-->
+					<div class="item captcha-item">
+						<label>验证码</label>
+						<p>
+							<img class="captcha-img" src="http://www.douban.com/misc/captcha?id=NGUi1x7XHIR0eigTq5ab3Id6:zh&amp;size=s">
+							<span class="tips">
+								看不清？
+								<a id="cap_resend" href="">换一个</a>
+							</span>
+						</p>
+						<input type="text" class="basic-input capcha" maxlength="10" tabindex="5"/>
+						<span class="validate-error" style="display: none;">验证码不能为空</span>
+					</div>
+					{% if error %}
+					<div class="item">
+						<label></label>
+						<div class="error" style="color: #FE5145;">{{error}}</div>
+					{% endif %}
+					<div class="item">
+						<p id="agreement">
+							<label for="agree" class="agreement-label">
+								<input type="checkbox" id="agree" name="form_agreement" tabindex="5">
+								我已经认真阅读并同意草叶的《
+								<a target="_blank" href="/about?policy=agreement">使用协议</a>
+								》。
+							</label>
+						</p>
+					</div>
+					<div class="item">
+						<label></label>
+						<input class="btn-submit" type="submit" tabindex="6" name="register" value="注册"/>
+					</div>
+				</form>
 			</div>
 		</div>
-	</form>
+		<!--登录导航-->
+		<div class="aside">
+			<div class="wrapper">
+			<ul>
+				<li>
+					&gt;已经有草叶帐号？
+					<a href="../login/?next=/" class="blue">立即登录</a>
+				</li>
+				<li>&gt;使用合作帐号登录</li>
+				<li class="oauth_login">
+					<a href="/oauth/sina/" class="login_ico sina" title="新浪微博"></a>
+					<a href="/oauth/qq/" class="login_ico qzone" title="腾讯QQ"></a>
+					<a href="/oauth/renren/" class="login_ico renren" title="人人网"></a>
+					<a href="/oauth/douban/" class="login_ico douban" title="豆瓣网"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
-{% endblock %}
-
-{% load staticfiles %}
-{% block extrajs %}
+</div>
+<script type="text/javascript" src="/static/js/jquery-1.11.0.js"></script>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
 <script>
@@ -58,14 +93,14 @@ $.validate({
     var optionalConfig = {
       fontSize: '12pt',
       padding: '4px',
-      bad : 'Very bad',
-      weak : 'Weak',
-      good : 'Good',
-      strong : 'Strong'
+      bad : '低',
+      weak : '低',
+      good : '中',
+      strong : '高'
     };
-
-    $('input[name="pass"]').displayPasswordStrength(optionalConfig);
+    $('input[name="password"]').displayPasswordStrength(optionalConfig);
   }
 });
 </script>
-{% endblock %}
+</body>
+</html>

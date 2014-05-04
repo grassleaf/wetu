@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.inalbum.name }} - {{ object.name }}{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="/static/css/gallery.css">
+{% endblock %}
+
+{% block content %}
+<div id="photo-detail">
+	<div class="row">
+		<div class="col-md-7 photo-img">
+			<img src="/media/{{ object.image.medium_url }}" />
+			<!-- <a href="{{ object.get_next_absolute_url }}">下一张</a>
+		-->
+		</div>
+		<div class="col-md-3 photo-desc">
+			<p>
+				作者{{object.inalbum.owner.username}}发布在专辑
+				<a href="{{ object.inalbum.get_absolute_url }}">{{object.inalbum.name}}</a>
+				中
+			</p>
+			<p>{{ object.date }}</p>
+			<p> " {{ object.intro }} " </p>
+		</div>
+	</div>
+</div>
+{% endblock %}

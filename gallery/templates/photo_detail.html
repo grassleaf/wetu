@@ -1,28 +1,176 @@
 {% extends "base.html" %}
 
-{% block title %}{{ object.inalbum.name }} - {{ object.name }}{% endblock %}
+
+{% block title %}图片详细{% endblock %}
 
 {% block extracss %}
-<link rel="stylesheet" type="text/css" href="/static/css/gallery.css">
+<link rel="stylesheet" href="/static/css/detail.css"/>
 {% endblock %}
-
+		
 {% block content %}
-<div id="photo-detail">
-	<div class="row">
-		<div class="col-md-7 photo-img">
-			<img src="/media/{{ object.image.medium_url }}" />
-			<!-- <a href="{{ object.get_next_absolute_url }}">下一张</a>
-		-->
+<div id="content">
+	<div class="module">
+		<div class="detailcont">
+			<div class="psection">
+				<!--介绍文字-->
+				<div class="userinfo clr">
+					<div class="sm-avatar">
+						<a href="/people/{{object.inalbum.getInfoSlug}}" class="avatar">
+							<img width="48" height="48" src="http://img4.duitang.com/uploads/people/201404/06/20140406234902_nrwLB.thumb.48_48_c.jpeg">
+						</a>
+					</div>
+					<div class="sm-info">
+						<h2>
+						<a href="/people/{{object.inalbum.getInfoSlug}}" title="用户名" class="name">
+							{{object.inalbum.owner.username}}
+						</a><span>发布到</span>
+						<a href="{{ object.inalbum.get_absolute_url }}" title="专辑名">
+							{{object.inalbum.name}}
+						</a><span>专辑中</span><i>{{ object.date }}</i></h2>
+						<div class="desc">
+							<i class="ql">"</i>
+							<h1 class="js-favorite-blogtit">{{ object.intro }}</h1>
+							<i class="qr">"</i>
+						</div>
+					</div>
+					<div id="follow" class="sm-follow">
+						<a href="javascript:;" class="follow" title="加关注">
+							<i>关注</i>
+						</a>
+					</div>
+				</div>
+				<!--图片区-->
+				<div class="img-mod">
+					<div id="img_info" class="image_info">
+						<div id="img_detail" class="pin-img clr" data-orig-source="null" data-media-type="0" data-id="150203823">
+							<a class="img-link" rel="nofollow" target="_blank" href="#">
+								<img width="658" height="347" alt="IMG_5779" src="/media/{{ object.image.medium_url }}">
+							</a>
+							<div id="img_view_arrows" style="top: 50%;">
+								<a class="prev x self " href=""></a>
+								<a class="next x self " href=""></a>
+							</div>
+						</div>
+					</div>
+					<div id="img_states">
+						<div class="share">
+							<span>分享到:</span>
+							<div class="img-shr clr" id="img-shr">
+								<a class="s-sina s-show" target="_blank" title="分享到新浪微博" href="">
+									&nbsp;
+								</a>
+								<a class="s-qq s-show" target="_blank" title="分享到QQ空间" href="">
+									&nbsp;
+								</a>
+								<a title="more" href="javascript:;" id="s-more" class="s-show s-more">
+									&nbsp;
+								</a>
+								<div class="shr-more" style="left: 43px; top: -1000px; display: none;">
+									<div>
+										<a class="s-qweibo s-unvisible" target="_blank" title="分享到腾讯微博" href="">
+											<em>&nbsp;</em>腾讯微博
+										</a>
+										<a class="s-douban s-unvisible" target="_blank" title="分享到豆瓣" href="http://www.douban.com/recommend/?image=">
+											<em>&nbsp;</em>豆瓣
+										</a>
+										<a class="s-renren s-unvisible" target="_blank" title="分享到人人网" href="http://www.connect.renren.com/sharer.do?url=">
+											<em>&nbsp;</em>人人网
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="collect">
+								<a class="act-o" hidefocus="" href="javascript:;">
+									收藏
+								</a>
+								<span><em>38</em></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-3 photo-desc">
-			<p>
-				作者{{object.inalbum.owner.username}}发布在专辑
-				<a href="{{ object.inalbum.get_absolute_url }}">{{object.inalbum.name}}</a>
-				中
-			</p>
-			<p>{{ object.date }}</p>
-			<p> " {{ object.intro }} " </p>
+		<!--评论-->
+		<div class="comt-list">
+			<h2>评论</h2>
+			<div class="reply-bd">
+				<div class="reply-area" id="js-reply-area">
+					<dl class="reply-input clr">
+						<dt class="comt-avatar">
+							<a href="/people/{{  }}">
+								<img width="48" height="48" src="http://img4.duitang.com/uploads/people/201401/15/20140115164140_ThyRs.thumb.48_48_c.jpeg" id="myavatar">
+							</a>
+						</dt>
+						<dd class="reply-text pr">
+							<div class="reply-text">
+								<form method="post" action="" id="form-comt-reply">
+									<div class="reply-editcont">
+										<label id="txa-comt-label" class="ipt-t" for="txa-comt-reply" style="display: block;">添加评论...</label>
+										<textarea id="txa-comt-reply" class="txa" name="content" style="overflow: hidden; height: 42px;"></textarea>
+									</div>
+									<div class="reply-sub clr">
+										<a href="javascript:;" class="sub-comt-reply abtn" id="sub-comt-reply">
+											<button type="button">
+												<u>评论</u>
+											</button>
+										</a>
+									</div>
+								</form>
+							</div>
+						</dd>
+					</dl>
+				</div>
+				<div class="comt-area">
+					<div id="replycont-main" class="reply-list">
+						<div id="js-reply-page" class="pbr dn">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="aside">
+		<div id="img_sources">
+			<div class="source board">
+				<h3>
+				<a href="{{ object.inalbum.get_absolute_url }}">
+					{{ object.inalbum.name }}
+				</a></h3>
+				<span class="imgs clr img-scrollbar" data-url="" data-id="">
+					<div class="unit clr">
+						<a href="#">
+							<img width="78" height="60" src="http://img.hb.aicdn.com/84c780a9951cb61131f9a52746b9bc89e96a6bc625f7d2-aQuwyu_fw78">
+						</a>
+						<a href="#">
+							<img width="78" height="41" src="http://img.hb.aicdn.com/cd635028d39c4e07f1876442f785b84e2617756f34549-9NbB4q_fw78">
+						</a>
+						<a href="">
+							<img width="78" height="93" src="http://img.hb.aicdn.com/ab78ce24919a9a32d903975738940c684e04fbed61793-cWCm5i_fw78">
+						</a>
+						<a href="">
+							<img width="78" height="59" src="http://img.hb.aicdn.com/fd40ae0b8b0ef4b1e18c3f2f7556160e67cf048f849b1-tI98gf_fw78">
+						</a>
+					</div>
+					<div class="unit clr">
+						<a href="#">
+							<img width="78" height="81" src="http://img.hb.aicdn.com/6a23a141f449d93608beb32bdbf4fe24513398146d044-75lllb_fw78">
+						</a>
+						<a href="#">
+							<img width="78" height="311" src="http://img.hb.aicdn.com/dd97ba8b22bb72cb5e18f398a4baddd2fbeb0fae6b4e1-wHkMhY_fw78">
+						</a>
+					</div>
+					<div class="unit clr">
+						<a href="#">
+							<img width="78" height="44" src="http://img.hb.aicdn.com/06527b91facd36ad18f93fcdaf44db3e8a61fc32ab610-Cj5CT1_fw78">
+						</a>
+						<a href="#">
+							<img width="78" height="68" src="http://img.hb.aicdn.com/384ad70157097db8baf30d55b2cbc009508316ea1a637-vfdzgc_fw78">
+						</a>
+					</div> </span>
+			</div>
 		</div>
 	</div>
 </div>
 {% endblock %}
+

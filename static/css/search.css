@@ -1,0 +1,228 @@
+#content {
+	background: #FFFFFF;
+	margin: 0 auto;
+	width: 960px;
+}
+a:hover {
+	cursor: pointer;
+	color: #2DAAE9;
+	text-decoration: underline;
+}
+.block {
+	line-height: 1.5;
+	margin-bottom: 22px;
+	width: 100%;
+}
+.sh-sw {
+    font-family: 宋体;
+    height: 29px;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+.sh-sw li {
+    float: left;
+    font-size: 14px;
+    height: 100%;
+    line-height: 28px;
+    margin: 0;
+    padding: 0 12px;
+    text-align: center;
+    width: 52px;
+}
+.sh-sw li.cur {
+    background-image: url("../images/main.png?20120916");
+    background-position: -270px -770px;
+    background-repeat: no-repeat;
+    color: #2DAAE9;
+    font-weight: bold;
+    width: 52px;
+}
+.sh-sw-bd {
+	background: #F7F7F7;
+	border: 1px solid #EBEBEB;
+    border-radius: 0 5px 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.09) inset;
+    margin: -1px 0 0;
+    overflow: hidden;
+    padding: 16px;
+}
+.ipt {
+	border-color: #D4D4D4;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 12px;
+    height: 25px;
+    line-height: 21px;
+    padding: 2px 2px 2px 4px;
+    width: 180px;
+}
+.sh-sw-bd .ipt {
+	width: 250px;
+}
+.sh-sw-bd .abtn {
+	float: left;
+	margin: 0 0 0 8px;
+}
+/*.sh-sw-bd a {
+	text-decoration: none;
+}*/
+.abtn button {
+    background: #2DAAE9;
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+.abtn button:hover {
+	background: #2D88FF;
+}
+.abtn u {
+    color: #F7F7F7;
+    cursor: pointer;
+    display: inline-block;
+    font-family: '宋体';
+    font-size: 14px;
+    height: 100%;
+    letter-spacing: 2px;
+    line-height: 30px;
+    padding: 0 16px 0 14px;
+    text-decoration: none;
+}
+.abtn:link, .abtn:visited {
+	border-radius: 3px;
+	height: 30px;
+	float: left;
+	overflow: hidden;
+	text-decoration: none !important;
+}
+.search-recom {
+    margin: 6px 0 0 12px;
+}
+.search-recom a {
+    margin: 0 4px;
+    /*color: #606060;*/
+}
+#woo-holder .stpics {
+	position: relative;
+	width: 959px;
+	line-height: 1.5;
+	visibility: visible;
+}
+.woo-masned {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    visibility: hidden;
+}
+.stpics .woo {
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    border-top: 0 none;
+    float: left;
+    height: auto;
+    margin: 0 21px 20px 0;
+}
+.woo-masned .woo {
+    position: absolute;
+    top: -6000px;
+}
+.stpics .woo .thumb {
+    border: 1px solid #E5E5E5;
+    border-radius: 2px 2px 0 0;
+    box-shadow: 1px 1px 1px rgba(240, 240, 240, 0.3);
+    padding: 11px 0 0;
+    width: 222px;
+}
+.stpics .woo .mbpho {
+    margin-left: 11px;
+    position: relative;
+}
+div.stpics .mbpho {
+    float: none;
+    height: auto;
+    margin: 0 0 8px;
+    overflow: hidden;
+    width: 200px;
+}
+.stpics .a {
+    float: left;
+    height: 100%;
+    width: 100%;
+}
+.stpics div.r {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #EFEEED;
+    height: 28px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 11px;
+}
+.stpics .r span {
+    background-image: url("http://img4.duitang.com/uploads/files/201211/26/20121126121246_VXE8F.png");
+    background-repeat: no-repeat;
+    color: #B4B4B4;
+    float: left;
+    font-size: 14px;
+    line-height: 19px;
+    margin: 0 12px 0 0;
+    padding: 0 0 0 22px;
+}
+.stpics .r .r1 {
+    background-position: -220px 2px;
+}
+.stpics .r .r2 {
+    background-position: -220px -18px;
+}
+.stpics .r .r4 {
+    background-position: -220px -38px;
+}
+
+
+.stpics .title {
+    background-color: #F8F8F8;
+    clear: both;
+    margin: 0;
+    overflow: hidden;
+    padding: 8px 11px 6px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.stpics ul {
+    background-color: #F8F8F8;
+    display: block;
+    padding: 0 0 8px;
+}
+.stpics li:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.stpics li {
+    border-top: 1px solid #EFEEED;
+    margin: 0 11px;
+    padding: 8px 0 7px;
+}
+.stpics li img {
+    float: left;
+    margin: 0 8px 0 0;
+}
+.stpics li p {
+    float: left;
+    overflow: hidden;
+    width: 165px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+
+
+
+
+

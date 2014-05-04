@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     # 'blog',
     'gallery',
     'data',
+    'crawl',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,7 +66,7 @@ WSGI_APPLICATION = 'wetu.wsgi.application'
 if DEBUG:
     DOMAIN = 'http://localhost:8080'
     DB_NAME = 'wetu'
-    DB_USER = 'michael'
+    DB_USER = 'root'
     DB_PWD = '123456'
 else:
     DOMAIN = 'http://isheying.co'
@@ -109,7 +110,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 TEMPLATE_DIRS = (
@@ -197,7 +198,6 @@ LOGGING = {
     }
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 PAGE_NUM = 10

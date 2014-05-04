@@ -21,25 +21,24 @@ def register(request):
     if request.method == "POST":
         username = request.POST['username']
         email = request.POST['email']
-        password = request.POST['pass']
+        password = request.POST['password']
         # 该用户是否存在
         if not _validate_email(email):
             error = '邮箱已被占用'
-        elif not _validate_username(username):
+        elif not _validate_uname(username):
             error = '昵称已被占用'
         else:
-            # user = User.objects.create_user(username,email,password)
-            # user.save()
-            createInfo(username, password, email)
+            cyer = createInfo(username, password, email)
             # 发送邮件
             # user.email_user("欢迎你注册", "http://blabla")
             _login(request, username, password) #注册后直接登陆
-            return redirect("/", {'username': username}) # 返回登录前的页面
-        return render_to_response("register.html", {'error': error})
+            request.session['slug'] = cyer.slug
+            return render_to_response("index.html", locals())
+        return render_to_response("register.html", locals())
     else:
         return render_to_response("register.html")
 
-def _validate_username(username):
+def _validate_uname(username):
     users = User.objects.filter(username=username)
     return True if not users else False # 模拟三操作符
 
@@ -56,37 +55,32 @@ def _login(request, username, password):
             request.session['username'] = username
             ret = True
         else:
-            # messages.add_message(request, messages.INFO, _(u'用户没有激活'))
-            print '用户没有激活'
+            print username, '没有激活'
     else:
-        # messages.add_message(request, messages.INFO, _(u'用户不存在'))
-        print '用户不存在'
+        print username, '不存在或者密码不正确'
     return ret
 
 @csrf_exempt
 def login(request):
+    redirect_to = request.GET['next']
     c = {}
     c.update(csrf(request))
     if not (request.method == 'POST'):
-        # 记住登录前的url，如果没有则设置为登录页('/login')
-        # request.session['login_from'] = request.META.get('HTTP_REFERER', '/login')
         return render_to_response('login.html')
     username = request.POST['username'] #用户可能输入email
     password = request.POST['password']
     if _login(request, username, password):
         print username, 'logined at ', datetime.datetime.now()
-        return redirect("/")
-        # return HttpResponseRedirect(reverse('index'))
+        # return redirect("/")
+        return HttpResponseRedirect(redirect_to)
     else:
-        return HttpResponseRedirect('.')
+        return render_to_response('login.html', {'error': '帐号不存在或密码错误'})
 
 @csrf_exempt
 def logout(request):
     print request.user.get_username(), 'logouted at ', datetime.datetime.now()
     auth.logout(request)
     request.session['username'] = None
-    # url = request.session['login_from']
-    request.session['login_from'] = None
     return HttpResponseRedirect('/')
 
 # def validate_input(request):

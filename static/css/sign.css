@@ -1,0 +1,120 @@
+body {
+	background-color: #FFFFFF;
+}
+#content {
+	background: #FFFFFF;
+	margin: 0 auto;
+	width: 800px;
+}
+#header {
+	padding-top: 30px;
+	margin-bottom: 50px;
+}
+.logo {
+	float: left;
+	height: 30px;
+	line-height: 10em;
+	overflow: hidden;
+	width: 215px;
+}
+a:link {
+    /*color: #336699;*/
+    text-decoration: none;
+}
+a:hover {
+	cursor: pointer;
+	background: none repeat scroll 0 0 #2DAAEE;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.wrapper {
+	margin: 0 auto;
+	width: 100%;
+}
+.article {
+	float: left;
+	width: 450px;
+}
+.article .clr {
+	clear: both;
+}
+.article .reg {
+	margin-left: 75px;
+	font-size: 12px;
+}
+.captcha-item .basic-input {
+	width: 95px;
+}
+.captcha-item p {
+	margin: 12px 0;
+}
+.captcha-item label {
+    height: 90px;
+}
+.aside {
+    color: #666666;
+    float: right;
+    width: 310px;
+}
+.aside .wrapper {
+	padding-top: 60px;
+}
+.aside .oauth_login {
+	margin-top: 10px;
+}
+.aside li {
+	margin-top: 12px;
+}
+.login_ico {
+	background: url(/static/images/theater/but.png) no-repeat;
+	width: 21px;
+	height: 21px;
+	line-height: 21px;
+	vertical-align: middle;
+	display: inline-block;
+	position: relative;
+	margin-right: 6px;
+}
+.oauth_login .login_ico.sina {
+	margin-left: 10px;
+}
+.login_ico.sina {
+	background-position: -196px -172px;
+	width: 24px;
+	height: 18px;
+	padding: 0;
+}
+.login_ico.qzone {
+	background-position: -229px -172px;
+	width: 21px;
+	height: 18px;
+}
+.login_ico.renren {
+	background-position: -255px -172px;
+	width: 19px;
+	height: 18px;
+	margin-right: 8px;
+}
+.login_ico.douban {
+	background-position: -284px -172px;
+	width: 15px;
+	height: 18px;
+}
+/*注册%使用协议*/
+#agreement {
+	margin-left: 75px;
+}
+#agreement .agreement-label {
+	display: inline;
+	width: auto;
+	text-align: left;
+	float: none;
+}
+#agreement .agreement-label {
+	font-size: 12px;
+	color: #000;
+	cursor: pointer;
+}
+#agreement input, #agreement label {
+	cursor: pointer;
+}

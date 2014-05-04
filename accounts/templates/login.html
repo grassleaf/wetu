@@ -1,22 +1,62 @@
-{% extends "base.html" %}
-
-{% block title %}
-登录微图网
-{% endblock %}
-
-{% load staticfiles %}
-{% block extracss%}
-<link href="/static/css/signin.css" rel="stylesheet">
-{% endblock %}
-
-{% block content %}
-<form action="." class="form-signin" role="form" method="POST">
-	{％ csrf_token ％}
-	<h2 class="form-signin-heading">Please sign in</h2>
-	<input type="text" class="form-control" name="username" placeholder="Username or Email address" required="" autofocus="">
-	<input type="password" class="form-control" name="password" placeholder="Password" required="">
-	<label class="checkbox">
-		<input type="checkbox" value="remember-me">Remember me</label>
-	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>登录草叶</title>
+		<link rel="stylesheet" href="/static/css/custom.css"/>
+		<link rel="stylesheet" href="/static/css/sign.css" />
+	</head>
+	<body>
+		<div id="content">
+			<div id="header">
+				<a href="/" class="logo">草叶</a>
+			</div>
+			<div class="wrapper">
+				<div class="article">
+					<h1>账号登录</h1>
+					<div class="cont">
+						<form action="/login/?next={{ redirect_to }}" method="POST">
+							<div class="item">
+								<label for="username">账号</label>
+								<input class="basic-input" type="text" placeholder="用户名/邮箱" name="username" tabindex="1"></div>
+							<div class="item">
+								<label for="password">密码</label>
+								<input class="basic-input" type="password" placeholder="密码" name="password" tabindex="2"></div>
+							{% if error %}
+							<div class="item">
+								<label></label>
+								<div class="error" style="color: #FE5145;">{{error}}</div></div>
+							{% endif %}
+							<div class="item">
+								<label></label>
+								<p class="remember">
+									<input type="checkbox" tabindex="4" name="remember" id="remember">
+									<label class="remember" for="remember">下次自动登录</label>
+									|
+									<a href="/accounts/resetpassword">忘记密码</a>
+								</p>
+							</div>
+							<div class="item">
+								<label> </label>
+								<input class="btn-submit" type="submit" tabindex="5" name="user_login" value="登录"/>
+							</div>
+						</form>
+					</div>
+					<div class="reg clr">
+						还没有草叶账号?
+						<a class="btn" href="../register/">立即注册</a>
+					</div>
+				</div>
+				<!--合作账户登录-->
+				<div  class="aside">
+					<h1>使用合作账户登录</h1>
+					<ul id="side-nav">
+						<li>
+							还没有合作账户
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

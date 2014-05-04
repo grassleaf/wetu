@@ -206,3 +206,7 @@ def createAlbum(Owner, Name, Intro = ""):
 	self.save()
 	return self
 
+def getInfo(Id):
+	"""
+	"""
+	return Info.objects.select_related().filter(ID__id = Id);

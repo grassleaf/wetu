@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block title %}爱摄影 - 我眼中的世界，尽在我的记录之中{% endblock %}
+
+{% block content %}
+
+<div id="content">
+	<div class="cy-wrap">
+		<div class="main-top clearfix">
+			<div class="pull-left">
+				<div id="CyCarousel">
+					<div class="cy-carousel-content">
+						<!--轮播-->
+						<div id="myCarousel" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner">
+								<a class="item active" href="#">
+									<img src="images/share.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
+									<div class="carousel-caption">
+										<h1>Example headline.</h1>
+										<p>
+											Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+										</p>
+									</div>
+								</a>
+								<a class="item" href="#">
+									<img src="images/pic2.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Second slide" alt="Second slide">
+									<div class="carousel-caption">
+										<h1>Another example headline.</h1>
+										<p>
+											Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+										</p>
+									</div>
+								</a>
+								<a class="item" href="#">
+									<img src="images/pic3.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Third slide" alt="Third slide">
+									<div class="carousel-caption">
+										<h1>One more for good measure.</h1>
+										<p>
+											Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+										</p>
+									</div>
+								</a>
+							</div>
+							<a class="carousel-left" href="#myCarousel" data-slide="prev"> <b></b>
+								<span></span>
+							</a>
+							<a class="carousel-right" href="#myCarousel" data-slide="next"> <b></b>
+								<span></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pull-left main-top-r">
+				<div class="cy-box">
+					<div class="cy-enter">
+						<h3>这些人在草叶网</h3>
+						<div class="logged clearfix">
+							<div class="user-img">
+								<a href="#" target="_top">
+									<img src="http://pkicon.b0.upaiyun.com/icon/775/320775/55531caba0a44632851ebd0faf8cb19f_50"></a>
+							</div>
+							<div class="user-img">
+								<a href="#" target="_top">
+									<img src="http://pkicon.b0.upaiyun.com/icon/775/320775/55531caba0a44632851ebd0faf8cb19f_50"></a>
+							</div>
+							<div class="user-img">
+								<a href="#" target="_top">
+									<img src="http://pkicon.b0.upaiyun.com/icon/775/320775/55531caba0a44632851ebd0faf8cb19f_50"></a>
+							</div>
+						</div>
+						<div class="placeholder">
+							<a href="#" class="btn">去看看</a>
+							<a class="btn btn-link refresh" title="换一批" href="javascript:;"></a>
+						</div>
+					</div>
+				</div>
+				<div id="CyHots">
+					<div class="popular-theme">
+						<div class="panel">
+							<div class="panel-heading">
+								<h4>热点精选</h4>
+							</div>
+							<div class="panel-body">
+								<ul id="populary_items">
+									<div>这里又是一个坑！</div>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="CardList" class="main-center">
+			<div class="cy-block">
+				<h2>大家都在看</h2>
+				<div class="pictures-list">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail">
+									<a href="#">
+										<img src="images/pic1.jpeg" alt="..."></a>
+									<div class="caption">
+										<a href="#"> <strong>简约</strong>
+										</a>
+										<p>1234人在看</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail">
+									<a href="#">
+										<img src="images/pic1.jpeg" alt="..."></a>
+									<div class="caption">
+										<a href="#">
+											<strong>简约</strong>
+										</a>
+										<p>1234人在看</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail">
+									<a href="#">
+										<img src="images/pic1.jpeg" alt="..."></a>
+									<div class="caption">
+										<a href="#">
+											<strong>简约</strong>
+										</a>
+										<p>1234人在看</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail">
+									<a href="#">
+										<img src="images/pic1.jpeg" alt="..."></a>
+									<div class="caption">
+										<a href="#">
+											<strong>简约</strong>
+										</a>
+										<p>1234人在看</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cy-block">
+				<h2>热门专辑</h2>
+				<div class="pictures-list">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail">
+									<a href="#">
+										<img src="images/pic1.jpeg" alt="..."></a>
+									<div class="caption">
+										<a href="#">
+											<strong>点点书香</strong>
+										</a>
+										<div class="pull-right">
+											<p>45人喜欢</p>
+										</div>
+										<div class="thumbattr">
+											<p>
+												by
+												<a href="#" class="cy-username" target="_blank">炉石娘</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="thumb-bottom-a"></div>
+								<div class="thumb-bottom-b"></div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail">
+									<a href="#">
+										<img src="images/pic1.jpeg" alt="..."></a>
+									<div class="caption">
+										<a href="#">
+											<strong>点点书香</strong>
+										</a>
+										<div class="pull-right">
+											<p>45人喜欢</p>
+										</div>
+										<div class="thumbattr">
+											<p>
+												by
+												<a href="#" class="cy-username" target="_blank">炉石娘</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="thumb-bottom-a"></div>
+								<div class="thumb-bottom-b"></div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail">
+									<a href="#">
+										<img src="images/pic1.jpeg" alt="..."></a>
+									<div class="caption">
+										<a href="#">
+											<strong>点点书香</strong>
+										</a>
+										<div class="pull-right">
+											<p>45人喜欢</p>
+										</div>
+										<div class="thumbattr">
+											<p>
+												by
+												<a href="#" class="cy-username" target="_blank">炉石娘</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="thumb-bottom-a"></div>
+								<div class="thumb-bottom-b"></div>
+							</div>
+							<div class="col-sm-6 col-md-3">
+								<div class="thumbnail">
+									<a href="#">
+										<img src="images/pic1.jpeg" alt="..."></a>
+									<div class="caption">
+										<a href="#">
+											<strong>点点书香</strong>
+										</a>
+										<div class="pull-right">
+											<p>45人喜欢</p>
+										</div>
+										<div class="thumbattr">
+											<p>
+												by
+												<a href="#" class="cy-username" target="_blank">炉石娘</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="thumb-bottom-a"></div>
+								<div class="thumb-bottom-b"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
